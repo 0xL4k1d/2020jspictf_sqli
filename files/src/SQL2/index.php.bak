@@ -1,0 +1,28 @@
+<?php
+//including the Mysql connect parameters.
+include 'db.php';
+// take the variables
+if(isset($_GET['id']))
+{
+    $id=$_GET['id'];
+// connectivity
+    $sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
+    $result=mysqli_query($con,$sql);
+    $row = mysqli_fetch_array($result);
+
+    if($row)
+    {
+        echo ("<h1 style='color:#99FF00;size:5px>
+        'Your Login name:'". $row['username']."</h1><br>");
+        echo ("<h1 style='color:#99FF00;size:5px>
+        'Your Login name:'". $row['password']."</h1><br>");
+    }
+    else
+    {
+            echo ("ERROR:".mysqli_error($con)."!");
+            exit();
+    }
+}
+else { echo "Please input the ID as parameter with numeric value";}
+
+?>

@@ -1,0 +1,37 @@
+<?php
+
+include 'db.php';
+
+
+$username = $_POST['username'];
+$password = md5($_POST['password']);
+
+$sql="SELECT `username`,`password` FROM `jspictf`.`jspictf` where username='$username' and password='$password'";
+
+
+$query = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($query);
+
+if($row)
+{
+    echo 'Your Login name:'. $row['username'];
+    echo "<br>";
+    echo 'Your Password:' .$row['password'];
+    echo 'Your id:' .$row['id'];
+}
+if (!$query) {
+    printf("Error: %s\n", mysqli_error($con));
+    exit();
+}
+//echo $row["pw"];
+if ($row['username'] == "admin") {
+    echo ("<p>Logged in! Key.flag{**********************}</p>
+                <img src=\"images\SQLi.jpg\">");
+}
+
+if ($row['username'] != "admin") {
+    echo("<h1>You are not admin!</h1>
+               <img src=\"images\zm.gif\">");
+}
+
+$result = $con->query($sql);
