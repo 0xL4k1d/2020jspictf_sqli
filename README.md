@@ -1,7 +1,7 @@
 # Title
 easysqli & realsqli
 # Description
-简单的SQL注入，牛子哥说有手就行
+20级新生攻防注入题
 # Category
 Web
 # Deployment
